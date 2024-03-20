@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "970320027251",
+    "project_id": "travel-app-2vennz",
+    "storage_bucket": "travel-app-2vennz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970320027251:android:5b0f7016b3f7b554811406",
+        "android_client_info": {
+          "package_name": "com.mycompany.travelapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWxz9MA5972R8JC5nV_TImgwk7jLHMqgo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
