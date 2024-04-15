@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'register_model.dart';
@@ -84,13 +85,42 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                             ),
                           ),
                           alignment: const AlignmentDirectional(-1.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              'Explore Uzbekistan',
-                              style: FlutterFlowTheme.of(context).displaySmall,
-                            ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    5.0, 0.0, 0.0, 0.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.safePop();
+                                  },
+                                  child: Icon(
+                                    Icons.chevron_left,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 34.0,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    5.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  'Explore Uzbekistan',
+                                  style: FlutterFlowTheme.of(context)
+                                      .displaySmall
+                                      .override(
+                                        fontFamily: 'Urbanist',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         Container(
@@ -113,7 +143,11 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                   Text(
                                     'Create an account',
                                     style: FlutterFlowTheme.of(context)
-                                        .headlineLarge,
+                                        .headlineLarge
+                                        .override(
+                                          fontFamily: 'Urbanist',
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
@@ -121,7 +155,11 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                     child: Text(
                                       'Let\'s get started by filling out the form below.',
                                       style: FlutterFlowTheme.of(context)
-                                          .labelMedium,
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
                                     ),
                                   ),
                                   Padding(
@@ -140,7 +178,11 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                           labelText: 'Email',
                                           labelStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .labelLarge,
+                                                  .labelLarge
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    letterSpacing: 0.0,
+                                                  ),
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
@@ -188,7 +230,11 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                                   .primaryBackground,
                                         ),
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyLarge,
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
                                         keyboardType:
                                             TextInputType.emailAddress,
                                         validator: _model
@@ -212,7 +258,11 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                           labelText: 'Password',
                                           labelStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .labelLarge,
+                                                  .labelLarge
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    letterSpacing: 0.0,
+                                                  ),
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
@@ -278,7 +328,11 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                           ),
                                         ),
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyLarge,
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
                                         validator: _model
                                             .passwordControllerValidator
                                             .asValidator(context),
@@ -303,7 +357,11 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                           labelText: 'Confirm Password',
                                           labelStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .labelLarge,
+                                                  .labelLarge
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    letterSpacing: 0.0,
+                                                  ),
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
@@ -371,7 +429,11 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                           ),
                                         ),
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyLarge,
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
                                         minLines: 1,
                                         validator: _model
                                             .passwordConfirmControllerValidator
@@ -430,6 +492,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
+                                              letterSpacing: 0.0,
                                             ),
                                         elevation: 3.0,
                                         borderSide: const BorderSide(
@@ -485,7 +548,12 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                                 'OR',
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .labelLarge,
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
                                               ),
                                             ),
                                           ),
@@ -530,6 +598,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
+                                              letterSpacing: 0.0,
                                             ),
                                         elevation: 0.0,
                                         borderSide: BorderSide(
@@ -561,7 +630,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                               style: TextStyle(),
                                             ),
                                             TextSpan(
-                                              text: ' Sign In here',
+                                              text: 'Sign In here',
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
@@ -570,14 +639,25 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .tertiary,
+                                                    letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w600,
                                                     decoration: TextDecoration
                                                         .underline,
                                                   ),
+                                              mouseCursor:
+                                                  SystemMouseCursors.click,
+                                              recognizer: TapGestureRecognizer()
+                                                ..onTap = () async {
+                                                  context.pushNamed('LogIn');
+                                                },
                                             )
                                           ],
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
                                         ),
                                       ),
                                     ),
@@ -634,7 +714,10 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                   BoxShadow(
                                     blurRadius: 3.0,
                                     color: Color(0x2E000000),
-                                    offset: Offset(0.0, 2.0),
+                                    offset: Offset(
+                                      0.0,
+                                      2.0,
+                                    ),
                                   )
                                 ],
                                 borderRadius: BorderRadius.circular(8.0),
@@ -686,7 +769,12 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                                 'UserName',
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .titleMedium,
+                                                        .titleMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
                                               ),
                                             ],
                                           ),
@@ -699,7 +787,12 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                                 'Overall',
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodySmall,
+                                                        .bodySmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
                                               ),
                                               Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -711,10 +804,14 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                                                 4.0, 0.0),
                                                     child: Text(
                                                       '5',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .headlineMedium,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .headlineMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Urbanist',
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                     ),
                                                   ),
                                                   Icon(
@@ -742,7 +839,12 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                               'Nice outdoor courts, solid concrete and good hoops for the neighborhood.',
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
                                           ),
                                         ],

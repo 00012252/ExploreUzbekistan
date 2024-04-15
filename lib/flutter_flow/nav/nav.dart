@@ -1,11 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
+import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
@@ -72,13 +75,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const HomeWidget() : const OnboardWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const OnboardWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const HomeWidget() : const OnboardWidget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const OnboardWidget(),
         ),
         FFRoute(
           name: 'Onboard',
@@ -96,9 +99,82 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const LogInWidget(),
         ),
         FFRoute(
+          name: 'CulturalInsights',
+          path: '/culturalInsights',
+          builder: (context, params) => const CulturalInsightsWidget(),
+        ),
+        FFRoute(
+          name: 'map',
+          path: '/map',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'map')
+              : MapWidget(
+                  location: params.getParam(
+                    'location',
+                    ParamType.LatLng,
+                  ),
+                ),
+        ),
+        FFRoute(
           name: 'Home',
           path: '/home',
-          builder: (context, params) => const HomeWidget(),
+          asyncParams: {
+            'citiesDoc': getDocList(['cities'], CitiesRecord.fromSnapshot),
+            'attractionsDoc':
+                getDocList(['attractions'], AttractionsRecord.fromSnapshot),
+          },
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'Home')
+              : HomeWidget(
+                  citiesDoc: params.getParam<CitiesRecord>(
+                    'citiesDoc',
+                    ParamType.Document,
+                    true,
+                  ),
+                  attractionsDoc: params.getParam<AttractionsRecord>(
+                    'attractionsDoc',
+                    ParamType.Document,
+                    true,
+                  ),
+                ),
+        ),
+        FFRoute(
+          name: 'Landmarks',
+          path: '/landmarks',
+          asyncParams: {
+            'attractionDoc':
+                getDoc(['attractions'], AttractionsRecord.fromSnapshot),
+          },
+          builder: (context, params) => LandmarksWidget(
+            attractionDoc: params.getParam(
+              'attractionDoc',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'DiscoverUzbekistan',
+          path: '/discoverUzbekistan',
+          asyncParams: {
+            'blogsDocument':
+                getDocList(['discUzblog'], DiscUzblogRecord.fromSnapshot),
+            'questionsDoc':
+                getDocList(['questions'], QuestionsRecord.fromSnapshot),
+          },
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'DiscoverUzbekistan')
+              : DiscoverUzbekistanWidget(
+                  blogsDocument: params.getParam<DiscUzblogRecord>(
+                    'blogsDocument',
+                    ParamType.Document,
+                    true,
+                  ),
+                  questionsDoc: params.getParam<QuestionsRecord>(
+                    'questionsDoc',
+                    ParamType.Document,
+                    true,
+                  ),
+                ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -231,8 +307,12 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(param, type, isList,
-        collectionNamePath: collectionNamePath);
+    return deserializeParam<T>(
+      param,
+      type,
+      isList,
+      collectionNamePath: collectionNamePath,
+    );
   }
 }
 
@@ -283,10 +363,9 @@ class FFRoute {
                   child: SizedBox(
                     width: 50.0,
                     height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
+                    child: SpinKitRotatingCircle(
+                      color: FlutterFlowTheme.of(context).tertiary,
+                      size: 50.0,
                     ),
                   ),
                 )

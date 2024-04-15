@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'log_in_widget.dart' show LogInWidget;
+import 'register_widget.dart' show RegisterWidget;
 import 'package:flutter/material.dart';
 
-class LogInModel extends FlutterFlowModel<LogInWidget> {
+class RegisterModel extends FlutterFlowModel<RegisterWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -15,12 +15,16 @@ class LogInModel extends FlutterFlowModel<LogInWidget> {
   TextEditingController? passwordController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordControllerValidator;
-
-  /// Initialization and disposal methods.
+  // State field(s) for passwordConfirm widget.
+  FocusNode? passwordConfirmFocusNode;
+  TextEditingController? passwordConfirmController;
+  late bool passwordConfirmVisibility;
+  String? Function(BuildContext, String?)? passwordConfirmControllerValidator;
 
   @override
   void initState(BuildContext context) {
     passwordVisibility = false;
+    passwordConfirmVisibility = false;
   }
 
   @override
@@ -31,9 +35,8 @@ class LogInModel extends FlutterFlowModel<LogInWidget> {
 
     passwordFocusNode?.dispose();
     passwordController?.dispose();
+
+    passwordConfirmFocusNode?.dispose();
+    passwordConfirmController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

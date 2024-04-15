@@ -305,13 +305,13 @@ class _OnboardWidgetState extends State<OnboardWidget>
                     'assets/images/pic1.jpg',
                     width: double.infinity,
                     height: 650.0,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fitWidth,
                   ).animateOnPageLoad(
                       animationsMap['imageOnPageLoadAnimation1']!),
                   Padding(
-                    padding: const EdgeInsets.all(24.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: Column(
-                      mainAxisSize: MainAxisSize.max,
+                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -320,6 +320,7 @@ class _OnboardWidgetState extends State<OnboardWidget>
                               .headlineLarge
                               .override(
                                 fontFamily: 'Urbanist',
+                                letterSpacing: 0.0,
                                 fontWeight: FontWeight.bold,
                               ),
                         ).animateOnPageLoad(
@@ -329,7 +330,12 @@ class _OnboardWidgetState extends State<OnboardWidget>
                               0.0, 12.0, 0.0, 0.0),
                           child: Text(
                             'Unforgettable jouney through the heart of Central Asia',
-                            style: FlutterFlowTheme.of(context).titleMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .titleMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
                           ).animateOnPageLoad(
                               animationsMap['textOnPageLoadAnimation2']!),
                         ),
@@ -378,7 +384,7 @@ class _OnboardWidgetState extends State<OnboardWidget>
                   ).animateOnPageLoad(
                       animationsMap['imageOnPageLoadAnimation2']!),
                   Padding(
-                    padding: const EdgeInsets.all(24.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -389,6 +395,7 @@ class _OnboardWidgetState extends State<OnboardWidget>
                               .headlineLarge
                               .override(
                                 fontFamily: 'Urbanist',
+                                letterSpacing: 0.0,
                                 fontWeight: FontWeight.bold,
                               ),
                         ).animateOnPageLoad(
@@ -398,7 +405,12 @@ class _OnboardWidgetState extends State<OnboardWidget>
                               0.0, 12.0, 0.0, 0.0),
                           child: Text(
                             'Your guide through the Silk Road\'s Legacy',
-                            style: FlutterFlowTheme.of(context).titleMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .titleMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
                           ).animateOnPageLoad(
                               animationsMap['textOnPageLoadAnimation4']!),
                         ),
@@ -478,6 +490,7 @@ class _OnboardWidgetState extends State<OnboardWidget>
                                       fontFamily: 'Urbanist',
                                       color: FlutterFlowTheme.of(context).info,
                                       fontSize: 65.0,
+                                      letterSpacing: 0.0,
                                     ),
                               ).animateOnPageLoad(
                                   animationsMap['textOnPageLoadAnimation5']!),
@@ -496,6 +509,7 @@ class _OnboardWidgetState extends State<OnboardWidget>
                                       fontFamily: 'Readex Pro',
                                       color: FlutterFlowTheme.of(context).info,
                                       fontSize: 25.0,
+                                      letterSpacing: 0.0,
                                     ),
                               ).animateOnPageLoad(
                                   animationsMap['textOnPageLoadAnimation6']!),
@@ -525,6 +539,7 @@ class _OnboardWidgetState extends State<OnboardWidget>
                                         fontFamily: 'Readex Pro',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
+                                        letterSpacing: 0.0,
                                       ),
                                   elevation: 2.0,
                                   borderSide: const BorderSide(
@@ -561,6 +576,7 @@ class _OnboardWidgetState extends State<OnboardWidget>
                                         fontFamily: 'Readex Pro',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
+                                        letterSpacing: 0.0,
                                       ),
                                   elevation: 2.0,
                                   borderSide: const BorderSide(
@@ -603,6 +619,7 @@ class _OnboardWidgetState extends State<OnboardWidget>
                                         fontFamily: 'Readex Pro',
                                         color: const Color(0xC5FFFFFF),
                                         fontSize: 15.0,
+                                        letterSpacing: 0.0,
                                         fontStyle: FontStyle.italic,
                                         decoration: TextDecoration.underline,
                                       ),

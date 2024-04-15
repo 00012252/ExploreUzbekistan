@@ -7,12 +7,33 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:970320027251:android:5b0f7016b3f7b554811406",
+        "mobilesdk_app_id": "1:970320027251:android:ea6c7b73ace0f8fd811406",
         "android_client_info": {
-          "package_name": "com.mycompany.travelapp"
+          "package_name": "com.mycompany.exploreuzbekistan"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "970320027251-fl1kuiivmn6guahob3lq4ev7a4sl5hfb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.exploreuzbekistan",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "970320027251-r0mj2od9grspk7jlo54hblu2m0j7pd9d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.exploreuzbekistan",
+            "certificate_hash": "504155abaaa9cb41acc0fc3c6ab5de6670208a9c"
+          }
+        },
+        {
+          "client_id": "970320027251-cf7qf86n6j2an23o6ena5ogb0rlvbht2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBWxz9MA5972R8JC5nV_TImgwk7jLHMqgo"
@@ -20,7 +41,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "970320027251-c8i4rcpq047f29o0mp66m5srpnsu6scf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "970320027251-bigriv7pfgo8lqupmd4fr1b76idheq7q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.travelapp"
+              }
+            }
+          ]
         }
       }
     }
