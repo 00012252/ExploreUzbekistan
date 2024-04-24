@@ -26,13 +26,13 @@ class _RegisterWidgetState extends State<RegisterWidget> {
     super.initState();
     _model = createModel(context, () => RegisterModel());
 
-    _model.emailAddressController ??= TextEditingController();
+    _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
 
-    _model.passwordController ??= TextEditingController();
+    _model.passwordTextController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
 
-    _model.passwordConfirmController ??= TextEditingController();
+    _model.passwordConfirmTextController ??= TextEditingController();
     _model.passwordConfirmFocusNode ??= FocusNode();
   }
 
@@ -169,7 +169,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                       width: double.infinity,
                                       child: TextFormField(
                                         controller:
-                                            _model.emailAddressController,
+                                            _model.emailAddressTextController,
                                         focusNode: _model.emailAddressFocusNode,
                                         autofocus: true,
                                         autofillHints: const [AutofillHints.email],
@@ -238,7 +238,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                         keyboardType:
                                             TextInputType.emailAddress,
                                         validator: _model
-                                            .emailAddressControllerValidator
+                                            .emailAddressTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -249,7 +249,8 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                     child: SizedBox(
                                       width: double.infinity,
                                       child: TextFormField(
-                                        controller: _model.passwordController,
+                                        controller:
+                                            _model.passwordTextController,
                                         focusNode: _model.passwordFocusNode,
                                         autofocus: true,
                                         autofillHints: const [AutofillHints.password],
@@ -334,7 +335,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
-                                            .passwordControllerValidator
+                                            .passwordTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -345,8 +346,8 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                     child: SizedBox(
                                       width: double.infinity,
                                       child: TextFormField(
-                                        controller:
-                                            _model.passwordConfirmController,
+                                        controller: _model
+                                            .passwordConfirmTextController,
                                         focusNode:
                                             _model.passwordConfirmFocusNode,
                                         autofocus: true,
@@ -436,7 +437,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                             ),
                                         minLines: 1,
                                         validator: _model
-                                            .passwordConfirmControllerValidator
+                                            .passwordConfirmTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -447,8 +448,9 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                     child: FFButtonWidget(
                                       onPressed: () async {
                                         GoRouter.of(context).prepareAuthEvent();
-                                        if (_model.passwordController.text !=
-                                            _model.passwordConfirmController
+                                        if (_model
+                                                .passwordTextController.text !=
+                                            _model.passwordConfirmTextController
                                                 .text) {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
@@ -464,8 +466,9 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                         final user = await authManager
                                             .createAccountWithEmail(
                                           context,
-                                          _model.emailAddressController.text,
-                                          _model.passwordController.text,
+                                          _model
+                                              .emailAddressTextController.text,
+                                          _model.passwordTextController.text,
                                         );
                                         if (user == null) {
                                           return;

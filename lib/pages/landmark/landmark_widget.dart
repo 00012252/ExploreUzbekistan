@@ -7,11 +7,11 @@ import 'package:mapbox_search/mapbox_search.dart' as mapbox;
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
-import 'landmarks_model.dart';
-export 'landmarks_model.dart';
+import 'landmark_model.dart';
+export 'landmark_model.dart';
 
-class LandmarksWidget extends StatefulWidget {
-  const LandmarksWidget({
+class LandmarkWidget extends StatefulWidget {
+  const LandmarkWidget({
     super.key,
     required this.attractionDoc,
   });
@@ -19,20 +19,21 @@ class LandmarksWidget extends StatefulWidget {
   final AttractionsRecord? attractionDoc;
 
   @override
-  State<LandmarksWidget> createState() => _LandmarksWidgetState();
+  State<LandmarkWidget> createState() => _LandmarkWidgetState();
 }
 
-class _LandmarksWidgetState extends State<LandmarksWidget> {
-  late LandmarksModel _model;
+class _LandmarkWidgetState extends State<LandmarkWidget> {
+  late LandmarkModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => LandmarksModel());
+    _model = createModel(context, () => LandmarkModel());
 
-    _model.expandableController = ExpandableController(initialExpanded: false);
+    _model.expandableExpandableController =
+        ExpandableController(initialExpanded: false);
   }
 
   @override
@@ -281,8 +282,8 @@ class _LandmarksWidgetState extends State<LandmarksWidget> {
                                           width: 200.0,
                                           color: const Color(0x00000000),
                                           child: ExpandableNotifier(
-                                            controller:
-                                                _model.expandableController,
+                                            controller: _model
+                                                .expandableExpandableController,
                                             child: ExpandablePanel(
                                               header: Text(
                                                 'Working hours',

@@ -24,10 +24,10 @@ class _LogInWidgetState extends State<LogInWidget> {
     super.initState();
     _model = createModel(context, () => LogInModel());
 
-    _model.emailAddressController ??= TextEditingController();
+    _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
 
-    _model.passwordController ??= TextEditingController();
+    _model.passwordTextController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
   }
 
@@ -154,7 +154,8 @@ class _LogInWidgetState extends State<LogInWidget> {
                                   child: SizedBox(
                                     width: 370.0,
                                     child: TextFormField(
-                                      controller: _model.emailAddressController,
+                                      controller:
+                                          _model.emailAddressTextController,
                                       focusNode: _model.emailAddressFocusNode,
                                       autofocus: true,
                                       autofillHints: const [AutofillHints.email],
@@ -215,7 +216,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                           ),
                                       keyboardType: TextInputType.emailAddress,
                                       validator: _model
-                                          .emailAddressControllerValidator
+                                          .emailAddressTextControllerValidator
                                           .asValidator(context),
                                     ),
                                   ),
@@ -226,7 +227,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                   child: SizedBox(
                                     width: 370.0,
                                     child: TextFormField(
-                                      controller: _model.passwordController,
+                                      controller: _model.passwordTextController,
                                       focusNode: _model.passwordFocusNode,
                                       autofocus: true,
                                       autofillHints: const [AutofillHints.password],
@@ -302,7 +303,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                       validator: _model
-                                          .passwordControllerValidator
+                                          .passwordTextControllerValidator
                                           .asValidator(context),
                                     ),
                                   ),
@@ -317,8 +318,8 @@ class _LogInWidgetState extends State<LogInWidget> {
                                       final user =
                                           await authManager.signInWithEmail(
                                         context,
-                                        _model.emailAddressController.text,
-                                        _model.passwordController.text,
+                                        _model.emailAddressTextController.text,
+                                        _model.passwordTextController.text,
                                       );
                                       if (user == null) {
                                         return;

@@ -5,8 +5,8 @@ import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class TravelAppFirebaseUser extends BaseAuthUser {
-  TravelAppFirebaseUser(this.user);
+class ExploreUzbekistanFirebaseUser extends BaseAuthUser {
+  ExploreUzbekistanFirebaseUser(this.user);
   User? user;
   @override
   bool get loggedIn => user != null;
@@ -55,17 +55,18 @@ class TravelAppFirebaseUser extends BaseAuthUser {
   static BaseAuthUser fromUserCredential(UserCredential userCredential) =>
       fromFirebaseUser(userCredential.user);
   static BaseAuthUser fromFirebaseUser(User? user) =>
-      TravelAppFirebaseUser(user);
+      ExploreUzbekistanFirebaseUser(user);
 }
 
-Stream<BaseAuthUser> travelAppFirebaseUserStream() => FirebaseAuth.instance
+Stream<BaseAuthUser> exploreUzbekistanFirebaseUserStream() =>
+    FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
         .map<BaseAuthUser>(
       (user) {
-        currentUser = TravelAppFirebaseUser(user);
+        currentUser = ExploreUzbekistanFirebaseUser(user);
         return currentUser!;
       },
     );

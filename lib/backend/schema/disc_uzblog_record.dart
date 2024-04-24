@@ -45,6 +45,26 @@ class DiscUzblogRecord extends FirestoreRecord {
   String get postContent => _postContent ?? '';
   bool hasPostContent() => _postContent != null;
 
+  // "postContent2" field.
+  String? _postContent2;
+  String get postContent2 => _postContent2 ?? '';
+  bool hasPostContent2() => _postContent2 != null;
+
+  // "postContent3" field.
+  String? _postContent3;
+  String get postContent3 => _postContent3 ?? '';
+  bool hasPostContent3() => _postContent3 != null;
+
+  // "image2" field.
+  String? _image2;
+  String get image2 => _image2 ?? '';
+  bool hasImage2() => _image2 != null;
+
+  // "image3" field.
+  String? _image3;
+  String get image3 => _image3 ?? '';
+  bool hasImage3() => _image3 != null;
+
   void _initializeFields() {
     _title = snapshotData['title'] as String?;
     _intro = snapshotData['intro'] as String?;
@@ -52,6 +72,10 @@ class DiscUzblogRecord extends FirestoreRecord {
     _hashtag1 = snapshotData['hashtag1'] as String?;
     _hashtag2 = snapshotData['hashtag2'] as String?;
     _postContent = snapshotData['postContent'] as String?;
+    _postContent2 = snapshotData['postContent2'] as String?;
+    _postContent3 = snapshotData['postContent3'] as String?;
+    _image2 = snapshotData['image2'] as String?;
+    _image3 = snapshotData['image3'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -95,6 +119,10 @@ Map<String, dynamic> createDiscUzblogRecordData({
   String? hashtag1,
   String? hashtag2,
   String? postContent,
+  String? postContent2,
+  String? postContent3,
+  String? image2,
+  String? image3,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -104,6 +132,10 @@ Map<String, dynamic> createDiscUzblogRecordData({
       'hashtag1': hashtag1,
       'hashtag2': hashtag2,
       'postContent': postContent,
+      'postContent2': postContent2,
+      'postContent3': postContent3,
+      'image2': image2,
+      'image3': image3,
     }.withoutNulls,
   );
 
@@ -120,12 +152,26 @@ class DiscUzblogRecordDocumentEquality implements Equality<DiscUzblogRecord> {
         e1?.image == e2?.image &&
         e1?.hashtag1 == e2?.hashtag1 &&
         e1?.hashtag2 == e2?.hashtag2 &&
-        e1?.postContent == e2?.postContent;
+        e1?.postContent == e2?.postContent &&
+        e1?.postContent2 == e2?.postContent2 &&
+        e1?.postContent3 == e2?.postContent3 &&
+        e1?.image2 == e2?.image2 &&
+        e1?.image3 == e2?.image3;
   }
 
   @override
-  int hash(DiscUzblogRecord? e) => const ListEquality().hash(
-      [e?.title, e?.intro, e?.image, e?.hashtag1, e?.hashtag2, e?.postContent]);
+  int hash(DiscUzblogRecord? e) => const ListEquality().hash([
+        e?.title,
+        e?.intro,
+        e?.image,
+        e?.hashtag1,
+        e?.hashtag2,
+        e?.postContent,
+        e?.postContent2,
+        e?.postContent3,
+        e?.image2,
+        e?.image3
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is DiscUzblogRecord;

@@ -99,21 +99,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const LogInWidget(),
         ),
         FFRoute(
-          name: 'CulturalInsights',
-          path: '/culturalInsights',
-          builder: (context, params) => const CulturalInsightsWidget(),
-        ),
-        FFRoute(
           name: 'map',
           path: '/map',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'map')
-              : MapWidget(
-                  location: params.getParam(
-                    'location',
-                    ParamType.LatLng,
-                  ),
-                ),
+          builder: (context, params) => MapWidget(
+            location: params.getParam(
+              'location',
+              ParamType.LatLng,
+            ),
+          ),
         ),
         FFRoute(
           name: 'Home',
@@ -139,13 +132,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
         ),
         FFRoute(
-          name: 'Landmarks',
-          path: '/landmarks',
+          name: 'Landmark',
+          path: '/landmark',
           asyncParams: {
             'attractionDoc':
                 getDoc(['attractions'], AttractionsRecord.fromSnapshot),
           },
-          builder: (context, params) => LandmarksWidget(
+          builder: (context, params) => LandmarkWidget(
             attractionDoc: params.getParam(
               'attractionDoc',
               ParamType.Document,
@@ -175,6 +168,70 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     true,
                   ),
                 ),
+        ),
+        FFRoute(
+          name: 'BlogsOpened',
+          path: '/blogsOpened',
+          asyncParams: {
+            'discUzblog': getDoc(['discUzblog'], DiscUzblogRecord.fromSnapshot),
+          },
+          builder: (context, params) => BlogsOpenedWidget(
+            discUzblog: params.getParam(
+              'discUzblog',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'EventsCalendar',
+          path: '/eventsCalendar',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'EventsCalendar')
+              : const EventsCalendarWidget(),
+        ),
+        FFRoute(
+          name: 'CityPage',
+          path: '/cityPage',
+          asyncParams: {
+            'citiesDoc': getDoc(['cities'], CitiesRecord.fromSnapshot),
+          },
+          builder: (context, params) => CityPageWidget(
+            citiesDoc: params.getParam(
+              'citiesDoc',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'Routes',
+          path: '/routes',
+          asyncParams: {
+            'routesDoc': getDoc(['routes'], RoutesRecord.fromSnapshot),
+          },
+          builder: (context, params) => RoutesWidget(
+            routesDoc: params.getParam(
+              'routesDoc',
+              ParamType.Document,
+            ),
+            routesDocRef: params.getParam(
+              'routesDocRef',
+              ParamType.DocumentReference,
+              false,
+              ['routes'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'profile',
+          path: '/profile',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'profile')
+              : const ProfileWidget(),
+        ),
+        FFRoute(
+          name: 'passwordReset',
+          path: '/passwordReset',
+          builder: (context, params) => const PasswordResetWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -251,7 +308,7 @@ extension _GoRouterStateExtensions on GoRouterState {
       extra != null ? extra as Map<String, dynamic> : {};
   Map<String, dynamic> get allParams => <String, dynamic>{}
     ..addAll(pathParameters)
-    ..addAll(queryParameters)
+    ..addAll(uri.queryParameters)
     ..addAll(extraMap);
   TransitionInfo get transitionInfo => extraMap.containsKey(kTransitionInfoKey)
       ? extraMap[kTransitionInfoKey] as TransitionInfo
@@ -344,7 +401,7 @@ class FFRoute {
           }
 
           if (requireAuth && !appStateNotifier.loggedIn) {
-            appStateNotifier.setRedirectLocationIfUnset(state.location);
+            appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
             return '/onboard';
           }
           return null;
@@ -363,8 +420,8 @@ class FFRoute {
                   child: SizedBox(
                     width: 50.0,
                     height: 50.0,
-                    child: SpinKitRotatingCircle(
-                      color: FlutterFlowTheme.of(context).tertiary,
+                    child: SpinKitDoubleBounce(
+                      color: FlutterFlowTheme.of(context).secondaryText,
                       size: 50.0,
                     ),
                   ),
@@ -422,7 +479,7 @@ class RootPageContext {
   static bool isInactiveRootPage(BuildContext context) {
     final rootPageContext = context.read<RootPageContext?>();
     final isRootPage = rootPageContext?.isRootPage ?? false;
-    final location = GoRouter.of(context).location;
+    final location = GoRouterState.of(context).uri.toString();
     return isRootPage &&
         location != '/' &&
         location != rootPageContext?.errorRoute;

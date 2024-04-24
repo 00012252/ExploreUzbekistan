@@ -9,10 +9,10 @@ export 'culturalinsights_model.dart';
 class CulturalinsightsWidget extends StatefulWidget {
   const CulturalinsightsWidget({
     super.key,
-    this.blog,
+    required this.discUzblog,
   });
 
-  final DiscUzblogRecord? blog;
+  final DiscUzblogRecord? discUzblog;
 
   @override
   State<CulturalinsightsWidget> createState() => _CulturalinsightsWidgetState();
@@ -70,7 +70,7 @@ class _CulturalinsightsWidgetState extends State<CulturalinsightsWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                   child: Text(
                     valueOrDefault<String>(
-                      widget.blog?.title,
+                      widget.discUzblog?.title,
                       'blogTitle',
                     ),
                     textAlign: TextAlign.start,
@@ -91,7 +91,7 @@ class _CulturalinsightsWidgetState extends State<CulturalinsightsWidget> {
                 borderRadius: BorderRadius.circular(0.0),
                 child: Image.network(
                   valueOrDefault<String>(
-                    widget.blog?.image,
+                    widget.discUzblog?.image,
                     'blogImage',
                   ),
                   width: 800.0,
@@ -111,7 +111,7 @@ class _CulturalinsightsWidgetState extends State<CulturalinsightsWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                   child: Text(
                     valueOrDefault<String>(
-                      widget.blog?.intro,
+                      widget.discUzblog?.intro,
                       'blogIntro',
                     ),
                     textAlign: TextAlign.start,
@@ -148,7 +148,7 @@ class _CulturalinsightsWidgetState extends State<CulturalinsightsWidget> {
                           const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                       child: Text(
                         valueOrDefault<String>(
-                          widget.blog?.hashtag1,
+                          widget.discUzblog?.hashtag1,
                           'hashtag1',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -175,7 +175,7 @@ class _CulturalinsightsWidgetState extends State<CulturalinsightsWidget> {
                           const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                       child: Text(
                         valueOrDefault<String>(
-                          widget.blog?.hashtag2,
+                          widget.discUzblog?.hashtag2,
                           'hashtag2',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -194,8 +194,19 @@ class _CulturalinsightsWidgetState extends State<CulturalinsightsWidget> {
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 12.0, 8.0),
                     child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        context.pushNamed(
+                          'BlogsOpened',
+                          queryParameters: {
+                            'discUzblog': serializeParam(
+                              widget.discUzblog,
+                              ParamType.Document,
+                            ),
+                          }.withoutNulls,
+                          extra: <String, dynamic>{
+                            'discUzblog': widget.discUzblog,
+                          },
+                        );
                       },
                       text: 'Read',
                       options: FFButtonOptions(

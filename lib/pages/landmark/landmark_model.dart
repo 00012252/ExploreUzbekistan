@@ -1,10 +1,10 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'landmarks_widget.dart' show LandmarksWidget;
+import 'landmark_widget.dart' show LandmarkWidget;
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 
-class LandmarksModel extends FlutterFlowModel<LandmarksWidget> {
+class LandmarkModel extends FlutterFlowModel<LandmarkWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -14,7 +14,7 @@ class LandmarksModel extends FlutterFlowModel<LandmarksWidget> {
   int carouselCurrentIndex = 1;
 
   // State field(s) for Expandable widget.
-  late ExpandableController expandableController;
+  late ExpandableController expandableExpandableController;
 
   @override
   void initState(BuildContext context) {}
@@ -22,6 +22,6 @@ class LandmarksModel extends FlutterFlowModel<LandmarksWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    expandableController.dispose();
+    expandableExpandableController.dispose();
   }
 }

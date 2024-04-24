@@ -1,6 +1,7 @@
 import '/backend/backend.dart';
 import '/components/attractions_list_widget.dart';
 import '/components/cities_horizontal_widget.dart';
+import '/components/routes_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -80,37 +81,30 @@ class _HomeWidgetState extends State<HomeWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 12.0, 0.0, 0.0),
-                                child: Text(
-                                  'Cities',
-                                  style: FlutterFlowTheme.of(context)
-                                      .headlineMedium
-                                      .override(
-                                        fontFamily: 'Urbanist',
-                                        fontSize: 28.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              12.0, 12.0, 0.0, 0.0),
+                          child: Text(
+                            'Cities',
+                            style: FlutterFlowTheme.of(context)
+                                .headlineMedium
+                                .override(
+                                  fontFamily: 'Urbanist',
+                                  fontSize: 28.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
                                 ),
-                              ),
-                            ],
                           ),
-                        ],
+                        ),
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Container(
                             width: double.infinity,
-                            height: 191.0,
+                            height: 237.0,
                             decoration: const BoxDecoration(),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
@@ -124,9 +118,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       child: SizedBox(
                                         width: 50.0,
                                         height: 50.0,
-                                        child: SpinKitRotatingCircle(
+                                        child: SpinKitDoubleBounce(
                                           color: FlutterFlowTheme.of(context)
-                                              .tertiary,
+                                              .secondaryText,
                                           size: 50.0,
                                         ),
                                       ),
@@ -145,8 +139,78 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           citCitiesRecordList[citIndex];
                                       return CitiesHorizontalWidget(
                                         key: Key(
-                                            'Keyqlp_${citIndex}_of_${citCitiesRecordList.length}'),
+                                            'Keyabi_${citIndex}_of_${citCitiesRecordList.length}'),
                                         citiesDoc: citCitiesRecord,
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              12.0, 8.0, 0.0, 0.0),
+                          child: Text(
+                            'Routes',
+                            style: FlutterFlowTheme.of(context)
+                                .headlineMedium
+                                .override(
+                                  fontFamily: 'Urbanist',
+                                  fontSize: 28.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                          ),
+                        ),
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            height: 233.0,
+                            decoration: const BoxDecoration(),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 8.0, 8.0, 0.0),
+                              child: StreamBuilder<List<RoutesRecord>>(
+                                stream: queryRoutesRecord(),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        child: SpinKitDoubleBounce(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 50.0,
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  List<RoutesRecord> citRoutesRecordList =
+                                      snapshot.data!;
+                                  return ListView.separated(
+                                    padding: EdgeInsets.zero,
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: citRoutesRecordList.length,
+                                    separatorBuilder: (_, __) =>
+                                        const SizedBox(width: 12.0),
+                                    itemBuilder: (context, citIndex) {
+                                      final citRoutesRecord =
+                                          citRoutesRecordList[citIndex];
+                                      return RoutesComponentWidget(
+                                        key: Key(
+                                            'Keym5z_${citIndex}_of_${citRoutesRecordList.length}'),
+                                        routesDoc: citRoutesRecord,
+                                        routesDocRef: citRoutesRecord.reference,
                                       );
                                     },
                                   );
@@ -159,25 +223,23 @@ class _HomeWidgetState extends State<HomeWidget> {
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  'Landmarks',
-                                  style: FlutterFlowTheme.of(context)
-                                      .headlineMedium
-                                      .override(
-                                        fontFamily: 'Urbanist',
-                                        fontSize: 28.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
+                          Align(
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 8.0, 0.0, 0.0),
+                              child: Text(
+                                'Landmarks',
+                                style: FlutterFlowTheme.of(context)
+                                    .headlineMedium
+                                    .override(
+                                      fontFamily: 'Urbanist',
+                                      fontSize: 28.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                               ),
-                            ],
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(14.0),
@@ -190,9 +252,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     child: SizedBox(
                                       width: 50.0,
                                       height: 50.0,
-                                      child: SpinKitRotatingCircle(
+                                      child: SpinKitDoubleBounce(
                                         color: FlutterFlowTheme.of(context)
-                                            .tertiary,
+                                            .secondaryText,
                                         size: 50.0,
                                       ),
                                     ),

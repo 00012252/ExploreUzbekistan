@@ -2,23 +2,25 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'cities_horizontal_model.dart';
-export 'cities_horizontal_model.dart';
+import 'routes_component_model.dart';
+export 'routes_component_model.dart';
 
-class CitiesHorizontalWidget extends StatefulWidget {
-  const CitiesHorizontalWidget({
+class RoutesComponentWidget extends StatefulWidget {
+  const RoutesComponentWidget({
     super.key,
-    required this.citiesDoc,
+    required this.routesDoc,
+    required this.routesDocRef,
   });
 
-  final CitiesRecord? citiesDoc;
+  final RoutesRecord? routesDoc;
+  final DocumentReference? routesDocRef;
 
   @override
-  State<CitiesHorizontalWidget> createState() => _CitiesHorizontalWidgetState();
+  State<RoutesComponentWidget> createState() => _RoutesComponentWidgetState();
 }
 
-class _CitiesHorizontalWidgetState extends State<CitiesHorizontalWidget> {
-  late CitiesHorizontalModel _model;
+class _RoutesComponentWidgetState extends State<RoutesComponentWidget> {
+  late RoutesComponentModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -29,7 +31,7 @@ class _CitiesHorizontalWidgetState extends State<CitiesHorizontalWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => CitiesHorizontalModel());
+    _model = createModel(context, () => RoutesComponentModel());
   }
 
   @override
@@ -52,15 +54,19 @@ class _CitiesHorizontalWidgetState extends State<CitiesHorizontalWidget> {
           highlightColor: Colors.transparent,
           onTap: () async {
             context.pushNamed(
-              'CityPage',
+              'Routes',
               queryParameters: {
-                'citiesDoc': serializeParam(
-                  widget.citiesDoc,
+                'routesDoc': serializeParam(
+                  widget.routesDoc,
                   ParamType.Document,
+                ),
+                'routesDocRef': serializeParam(
+                  widget.routesDocRef,
+                  ParamType.DocumentReference,
                 ),
               }.withoutNulls,
               extra: <String, dynamic>{
-                'citiesDoc': widget.citiesDoc,
+                'routesDoc': widget.routesDoc,
               },
             );
           },
@@ -97,8 +103,8 @@ class _CitiesHorizontalWidgetState extends State<CitiesHorizontalWidget> {
                   borderRadius: BorderRadius.circular(12.0),
                   child: Image.network(
                     valueOrDefault<String>(
-                      widget.citiesDoc?.image,
-                      'City Image',
+                      widget.routesDoc?.routeImage,
+                      'Route Image',
                     ),
                     width: 300.0,
                     height: 175.0,
@@ -113,8 +119,8 @@ class _CitiesHorizontalWidgetState extends State<CitiesHorizontalWidget> {
           padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
           child: Text(
             valueOrDefault<String>(
-              widget.citiesDoc?.cityName,
-              'cityName',
+              widget.routesDoc?.routeName,
+              'routeName',
             ),
             style: FlutterFlowTheme.of(context).bodyMedium.override(
                   fontFamily: 'Readex Pro',

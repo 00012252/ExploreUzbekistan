@@ -1,8 +1,7 @@
 import '/backend/backend.dart';
 import '/components/culturalinsights_widget.dart';
-import '/components/f_a_qs_copy_widget.dart';
+import '/components/f_a_qs_widget.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -62,20 +61,6 @@ class _DiscoverUzbekistanWidgetState extends State<DiscoverUzbekistanWidget>
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 30.0,
-            ),
-            onPressed: () async {
-              context.pop();
-            },
-          ),
           title: Text(
             'Discover Uzbekistan',
             style: FlutterFlowTheme.of(context).titleSmall.override(
@@ -153,9 +138,9 @@ class _DiscoverUzbekistanWidgetState extends State<DiscoverUzbekistanWidget>
                                       child: SizedBox(
                                         width: 50.0,
                                         height: 50.0,
-                                        child: SpinKitRotatingCircle(
+                                        child: SpinKitDoubleBounce(
                                           color: FlutterFlowTheme.of(context)
-                                              .tertiary,
+                                              .secondaryText,
                                           size: 50.0,
                                         ),
                                       ),
@@ -175,10 +160,14 @@ class _DiscoverUzbekistanWidgetState extends State<DiscoverUzbekistanWidget>
                                       final listViewDiscUzblogRecord =
                                           listViewDiscUzblogRecordList[
                                               listViewIndex];
-                                      return CulturalinsightsWidget(
-                                        key: Key(
-                                            'Keybq8_${listViewIndex}_of_${listViewDiscUzblogRecordList.length}'),
-                                        blog: listViewDiscUzblogRecord,
+                                      return Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            12.0, 0.0, 12.0, 0.0),
+                                        child: CulturalinsightsWidget(
+                                          key: Key(
+                                              'Key0p9_${listViewIndex}_of_${listViewDiscUzblogRecordList.length}'),
+                                          discUzblog: listViewDiscUzblogRecord,
+                                        ),
                                       );
                                     },
                                   );
@@ -209,55 +198,61 @@ class _DiscoverUzbekistanWidgetState extends State<DiscoverUzbekistanWidget>
                                         ],
                                       ),
                                     ),
-                                    StreamBuilder<List<QuestionsRecord>>(
-                                      stream: queryQuestionsRecord(
-                                        queryBuilder: (questionsRecord) =>
-                                            questionsRecord.where(
-                                          'topic',
-                                          isEqualTo: 'Main Questions',
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 0.0, 12.0, 0.0),
+                                      child:
+                                          StreamBuilder<List<QuestionsRecord>>(
+                                        stream: queryQuestionsRecord(
+                                          queryBuilder: (questionsRecord) =>
+                                              questionsRecord.where(
+                                            'topic',
+                                            isEqualTo: 'Main Questions',
+                                          ),
                                         ),
-                                      ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: SpinKitRotatingCircle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .tertiary,
-                                                size: 50.0,
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child: SpinKitDoubleBounce(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 50.0,
+                                                ),
                                               ),
-                                            ),
-                                          );
-                                        }
-                                        List<QuestionsRecord>
-                                            listViewQuestionsRecordList =
-                                            snapshot.data!;
-                                        return ListView.separated(
-                                          padding: EdgeInsets.zero,
-                                          shrinkWrap: true,
-                                          scrollDirection: Axis.vertical,
-                                          itemCount: listViewQuestionsRecordList
-                                              .length,
-                                          separatorBuilder: (_, __) =>
-                                              const SizedBox(height: 10.0),
-                                          itemBuilder:
-                                              (context, listViewIndex) {
-                                            final listViewQuestionsRecord =
-                                                listViewQuestionsRecordList[
-                                                    listViewIndex];
-                                            return FAQsCopyWidget(
-                                              key: Key(
-                                                  'Keyys2_${listViewIndex}_of_${listViewQuestionsRecordList.length}'),
-                                              questionsDoc:
-                                                  listViewQuestionsRecord,
                                             );
-                                          },
-                                        );
-                                      },
+                                          }
+                                          List<QuestionsRecord>
+                                              listViewQuestionsRecordList =
+                                              snapshot.data!;
+                                          return ListView.separated(
+                                            padding: EdgeInsets.zero,
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.vertical,
+                                            itemCount:
+                                                listViewQuestionsRecordList
+                                                    .length,
+                                            separatorBuilder: (_, __) =>
+                                                const SizedBox(height: 10.0),
+                                            itemBuilder:
+                                                (context, listViewIndex) {
+                                              final listViewQuestionsRecord =
+                                                  listViewQuestionsRecordList[
+                                                      listViewIndex];
+                                              return FAQsWidget(
+                                                key: Key(
+                                                    'Keyys2_${listViewIndex}_of_${listViewQuestionsRecordList.length}'),
+                                                questionsDoc:
+                                                    listViewQuestionsRecord,
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(10.0),
@@ -277,55 +272,61 @@ class _DiscoverUzbekistanWidgetState extends State<DiscoverUzbekistanWidget>
                                         ],
                                       ),
                                     ),
-                                    StreamBuilder<List<QuestionsRecord>>(
-                                      stream: queryQuestionsRecord(
-                                        queryBuilder: (questionsRecord) =>
-                                            questionsRecord.where(
-                                          'topic',
-                                          isEqualTo: 'Passport',
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 0.0, 12.0, 0.0),
+                                      child:
+                                          StreamBuilder<List<QuestionsRecord>>(
+                                        stream: queryQuestionsRecord(
+                                          queryBuilder: (questionsRecord) =>
+                                              questionsRecord.where(
+                                            'topic',
+                                            isEqualTo: 'Passport',
+                                          ),
                                         ),
-                                      ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: SpinKitRotatingCircle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .tertiary,
-                                                size: 50.0,
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child: SpinKitDoubleBounce(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 50.0,
+                                                ),
                                               ),
-                                            ),
-                                          );
-                                        }
-                                        List<QuestionsRecord>
-                                            listViewQuestionsRecordList =
-                                            snapshot.data!;
-                                        return ListView.separated(
-                                          padding: EdgeInsets.zero,
-                                          shrinkWrap: true,
-                                          scrollDirection: Axis.vertical,
-                                          itemCount: listViewQuestionsRecordList
-                                              .length,
-                                          separatorBuilder: (_, __) =>
-                                              const SizedBox(height: 10.0),
-                                          itemBuilder:
-                                              (context, listViewIndex) {
-                                            final listViewQuestionsRecord =
-                                                listViewQuestionsRecordList[
-                                                    listViewIndex];
-                                            return FAQsCopyWidget(
-                                              key: Key(
-                                                  'Keye67_${listViewIndex}_of_${listViewQuestionsRecordList.length}'),
-                                              questionsDoc:
-                                                  listViewQuestionsRecord,
                                             );
-                                          },
-                                        );
-                                      },
+                                          }
+                                          List<QuestionsRecord>
+                                              listViewQuestionsRecordList =
+                                              snapshot.data!;
+                                          return ListView.separated(
+                                            padding: EdgeInsets.zero,
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.vertical,
+                                            itemCount:
+                                                listViewQuestionsRecordList
+                                                    .length,
+                                            separatorBuilder: (_, __) =>
+                                                const SizedBox(height: 10.0),
+                                            itemBuilder:
+                                                (context, listViewIndex) {
+                                              final listViewQuestionsRecord =
+                                                  listViewQuestionsRecordList[
+                                                      listViewIndex];
+                                              return FAQsWidget(
+                                                key: Key(
+                                                    'Keye67_${listViewIndex}_of_${listViewQuestionsRecordList.length}'),
+                                                questionsDoc:
+                                                    listViewQuestionsRecord,
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(10.0),
@@ -345,55 +346,61 @@ class _DiscoverUzbekistanWidgetState extends State<DiscoverUzbekistanWidget>
                                         ],
                                       ),
                                     ),
-                                    StreamBuilder<List<QuestionsRecord>>(
-                                      stream: queryQuestionsRecord(
-                                        queryBuilder: (questionsRecord) =>
-                                            questionsRecord.where(
-                                          'topic',
-                                          isEqualTo: 'Visa',
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 0.0, 12.0, 0.0),
+                                      child:
+                                          StreamBuilder<List<QuestionsRecord>>(
+                                        stream: queryQuestionsRecord(
+                                          queryBuilder: (questionsRecord) =>
+                                              questionsRecord.where(
+                                            'topic',
+                                            isEqualTo: 'Visa',
+                                          ),
                                         ),
-                                      ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: SpinKitRotatingCircle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .tertiary,
-                                                size: 50.0,
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child: SpinKitDoubleBounce(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 50.0,
+                                                ),
                                               ),
-                                            ),
-                                          );
-                                        }
-                                        List<QuestionsRecord>
-                                            listViewQuestionsRecordList =
-                                            snapshot.data!;
-                                        return ListView.separated(
-                                          padding: EdgeInsets.zero,
-                                          shrinkWrap: true,
-                                          scrollDirection: Axis.vertical,
-                                          itemCount: listViewQuestionsRecordList
-                                              .length,
-                                          separatorBuilder: (_, __) =>
-                                              const SizedBox(height: 10.0),
-                                          itemBuilder:
-                                              (context, listViewIndex) {
-                                            final listViewQuestionsRecord =
-                                                listViewQuestionsRecordList[
-                                                    listViewIndex];
-                                            return FAQsCopyWidget(
-                                              key: Key(
-                                                  'Keyz0a_${listViewIndex}_of_${listViewQuestionsRecordList.length}'),
-                                              questionsDoc:
-                                                  listViewQuestionsRecord,
                                             );
-                                          },
-                                        );
-                                      },
+                                          }
+                                          List<QuestionsRecord>
+                                              listViewQuestionsRecordList =
+                                              snapshot.data!;
+                                          return ListView.separated(
+                                            padding: EdgeInsets.zero,
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.vertical,
+                                            itemCount:
+                                                listViewQuestionsRecordList
+                                                    .length,
+                                            separatorBuilder: (_, __) =>
+                                                const SizedBox(height: 10.0),
+                                            itemBuilder:
+                                                (context, listViewIndex) {
+                                              final listViewQuestionsRecord =
+                                                  listViewQuestionsRecordList[
+                                                      listViewIndex];
+                                              return FAQsWidget(
+                                                key: Key(
+                                                    'Keyz0a_${listViewIndex}_of_${listViewQuestionsRecordList.length}'),
+                                                questionsDoc:
+                                                    listViewQuestionsRecord,
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(10.0),
@@ -413,55 +420,61 @@ class _DiscoverUzbekistanWidgetState extends State<DiscoverUzbekistanWidget>
                                         ],
                                       ),
                                     ),
-                                    StreamBuilder<List<QuestionsRecord>>(
-                                      stream: queryQuestionsRecord(
-                                        queryBuilder: (questionsRecord) =>
-                                            questionsRecord.where(
-                                          'topic',
-                                          isEqualTo: 'Flight',
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 0.0, 12.0, 0.0),
+                                      child:
+                                          StreamBuilder<List<QuestionsRecord>>(
+                                        stream: queryQuestionsRecord(
+                                          queryBuilder: (questionsRecord) =>
+                                              questionsRecord.where(
+                                            'topic',
+                                            isEqualTo: 'Flight',
+                                          ),
                                         ),
-                                      ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: SpinKitRotatingCircle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .tertiary,
-                                                size: 50.0,
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child: SpinKitDoubleBounce(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 50.0,
+                                                ),
                                               ),
-                                            ),
-                                          );
-                                        }
-                                        List<QuestionsRecord>
-                                            listViewQuestionsRecordList =
-                                            snapshot.data!;
-                                        return ListView.separated(
-                                          padding: EdgeInsets.zero,
-                                          shrinkWrap: true,
-                                          scrollDirection: Axis.vertical,
-                                          itemCount: listViewQuestionsRecordList
-                                              .length,
-                                          separatorBuilder: (_, __) =>
-                                              const SizedBox(height: 10.0),
-                                          itemBuilder:
-                                              (context, listViewIndex) {
-                                            final listViewQuestionsRecord =
-                                                listViewQuestionsRecordList[
-                                                    listViewIndex];
-                                            return FAQsCopyWidget(
-                                              key: Key(
-                                                  'Keyo6m_${listViewIndex}_of_${listViewQuestionsRecordList.length}'),
-                                              questionsDoc:
-                                                  listViewQuestionsRecord,
                                             );
-                                          },
-                                        );
-                                      },
+                                          }
+                                          List<QuestionsRecord>
+                                              listViewQuestionsRecordList =
+                                              snapshot.data!;
+                                          return ListView.separated(
+                                            padding: EdgeInsets.zero,
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.vertical,
+                                            itemCount:
+                                                listViewQuestionsRecordList
+                                                    .length,
+                                            separatorBuilder: (_, __) =>
+                                                const SizedBox(height: 10.0),
+                                            itemBuilder:
+                                                (context, listViewIndex) {
+                                              final listViewQuestionsRecord =
+                                                  listViewQuestionsRecordList[
+                                                      listViewIndex];
+                                              return FAQsWidget(
+                                                key: Key(
+                                                    'Keyo6m_${listViewIndex}_of_${listViewQuestionsRecordList.length}'),
+                                                questionsDoc:
+                                                    listViewQuestionsRecord,
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
                                     ),
                                   ],
                                 ),

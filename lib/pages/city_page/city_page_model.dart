@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'cultural_insights_widget.dart' show CulturalInsightsWidget;
+import 'city_page_widget.dart' show CityPageWidget;
 import 'package:flutter/material.dart';
 
-class CulturalInsightsModel extends FlutterFlowModel<CulturalInsightsWidget> {
+class CityPageModel extends FlutterFlowModel<CityPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

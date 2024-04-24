@@ -45,7 +45,7 @@ class _AttractionsListWidgetState extends State<AttractionsListWidget> {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).secondaryBackground,
+        color: FlutterFlowTheme.of(context).alternate,
         boxShadow: const [
           BoxShadow(
             blurRadius: 4.0,
@@ -66,100 +66,125 @@ class _AttractionsListWidgetState extends State<AttractionsListWidget> {
         children: [
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Align(
-                        alignment: const AlignmentDirectional(-1.0, -1.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(14.0),
-                          child: Image.network(
-                            valueOrDefault<String>(
-                              widget.attractionDoc?.attractionImage,
-                              'Attraction Image',
-                            ),
-                            width: 117.0,
-                            height: 164.0,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Flexible(
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(12.0, 14.0, 0.0, 0.0),
+            child: InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () async {
+                context.pushNamed(
+                  'Landmark',
+                  queryParameters: {
+                    'attractionDoc': serializeParam(
+                      widget.attractionDoc,
+                      ParamType.Document,
+                    ),
+                  }.withoutNulls,
+                  extra: <String, dynamic>{
+                    'attractionDoc': widget.attractionDoc,
+                    kTransitionInfoKey: const TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.bottomToTop,
+                    ),
+                  },
+                );
+              },
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
+                        Align(
+                          alignment: const AlignmentDirectional(-1.0, -1.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(14.0),
+                            child: Image.network(
                               valueOrDefault<String>(
-                                widget.attractionDoc?.attractionName,
-                                'Attraction Name',
+                                widget.attractionDoc?.attractionImage,
+                                'Attraction Image',
                               ),
-                              style: FlutterFlowTheme.of(context)
-                                  .headlineLarge
-                                  .override(
-                                    fontFamily: 'Urbanist',
-                                    fontSize: 26.0,
-                                    letterSpacing: 0.0,
-                                  ),
+                              width: 117.0,
+                              height: 164.0,
+                              fit: BoxFit.cover,
                             ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Flexible(
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 18.0, 0.0, 0.0),
-                                child: Text(
-                                  valueOrDefault<String>(
-                                    widget.attractionDoc?.attractionDescription,
-                                    'Attraction Description',
-                                  ),
-                                  textAlign: TextAlign.start,
-                                  maxLines: 3,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        fontSize: 14.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ],
                     ),
                   ),
-                ),
-              ],
+                  Flexible(
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(12.0, 14.0, 0.0, 0.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                valueOrDefault<String>(
+                                  widget.attractionDoc?.attractionName,
+                                  'Attraction Name',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .headlineLarge
+                                    .override(
+                                      fontFamily: 'Urbanist',
+                                      fontSize: 26.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Flexible(
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 18.0, 0.0, 0.0),
+                                  child: Text(
+                                    valueOrDefault<String>(
+                                      widget
+                                          .attractionDoc?.attractionDescription,
+                                      'Attraction Description',
+                                    ),
+                                    textAlign: TextAlign.start,
+                                    maxLines: 3,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          fontSize: 14.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           FFButtonWidget(
             onPressed: () async {
               context.pushNamed(
-                'Landmarks',
+                'Landmark',
                 queryParameters: {
                   'attractionDoc': serializeParam(
                     widget.attractionDoc,

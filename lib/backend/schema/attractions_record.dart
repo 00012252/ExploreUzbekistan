@@ -56,6 +56,11 @@ class AttractionsRecord extends FirestoreRecord {
   LatLng? get attractionLocation => _attractionLocation;
   bool hasAttractionLocation() => _attractionLocation != null;
 
+  // "attractionCityLocation" field.
+  String? _attractionCityLocation;
+  String get attractionCityLocation => _attractionCityLocation ?? '';
+  bool hasAttractionCityLocation() => _attractionCityLocation != null;
+
   void _initializeFields() {
     _attractionName = snapshotData['attractionName'] as String?;
     _attractionDescription = snapshotData['attractionDescription'] as String?;
@@ -65,6 +70,7 @@ class AttractionsRecord extends FirestoreRecord {
     _attractionImage = snapshotData['attractionImage'] as String?;
     _attractionType = snapshotData['attractionType'] as String?;
     _attractionLocation = snapshotData['attractionLocation'] as LatLng?;
+    _attractionCityLocation = snapshotData['attractionCityLocation'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -110,6 +116,7 @@ Map<String, dynamic> createAttractionsRecordData({
   String? attractionImage,
   String? attractionType,
   LatLng? attractionLocation,
+  String? attractionCityLocation,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -121,6 +128,7 @@ Map<String, dynamic> createAttractionsRecordData({
       'attractionImage': attractionImage,
       'attractionType': attractionType,
       'attractionLocation': attractionLocation,
+      'attractionCityLocation': attractionCityLocation,
     }.withoutNulls,
   );
 
@@ -139,7 +147,8 @@ class AttractionsRecordDocumentEquality implements Equality<AttractionsRecord> {
         e1?.ticketPrice == e2?.ticketPrice &&
         e1?.attractionImage == e2?.attractionImage &&
         e1?.attractionType == e2?.attractionType &&
-        e1?.attractionLocation == e2?.attractionLocation;
+        e1?.attractionLocation == e2?.attractionLocation &&
+        e1?.attractionCityLocation == e2?.attractionCityLocation;
   }
 
   @override
@@ -151,7 +160,8 @@ class AttractionsRecordDocumentEquality implements Equality<AttractionsRecord> {
         e?.ticketPrice,
         e?.attractionImage,
         e?.attractionType,
-        e?.attractionLocation
+        e?.attractionLocation,
+        e?.attractionCityLocation
       ]);
 
   @override

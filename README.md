@@ -1,4 +1,4 @@
-# Travel App
+# Explore Uzbekistan
 
 A new Flutter project.
 

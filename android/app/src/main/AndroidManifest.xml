@@ -5,7 +5,7 @@
 
 
     <application
-        android:label="Travel App"
+        android:label="Explore Uzbekistan"
         tools:replace="android:label"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true">
@@ -45,7 +45,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="travelapp" android:host="travelapp.com" />
+                <data android:scheme="exploreuzbekistan" android:host="exploreuzbekistan.com" />
             </intent-filter>
 
         </activity>
